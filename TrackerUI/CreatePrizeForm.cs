@@ -25,8 +25,8 @@ namespace TrackerUI
             if (ValidateForm())
             {
                 PrizeModel model = new PrizeModel(
-                    placeNumberValue.Text, 
                     placeNameValue.Text,
+                    placeNumberValue.Text, 
                     prizeAmountValue.Text,
                     prizePercentageValue.Text);
 
@@ -35,8 +35,8 @@ namespace TrackerUI
                     db.CreatePrize(model);
                 }
 
-                placeNumberValue.Text = "";
                 placeNameValue.Text = "";
+                placeNumberValue.Text = "";
                 prizeAmountValue.Text = "0";
                 prizePercentageValue.Text = "0";
 
