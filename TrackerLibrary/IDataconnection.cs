@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrackerLibrary
 {
-    public interface IDataconnection
+    public interface IDataConnection
     {
         PrizeModel CreatePrize(PrizeModel model);
     }

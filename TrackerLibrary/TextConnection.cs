@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrackerLibrary
 {
-    public class TextConnection : IDataconnection
+    public class TextConnection : IDataConnection
     {
 
         // TODO - Wire up the CreatePrize for text files.
