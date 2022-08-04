@@ -14,9 +14,12 @@ namespace TrackerLibrary.DataAccess
 
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            model.Id = 1;
-
-            return model;
+           // Load the text file
+           // Convert the text to List<PrizeModel>
+           // Find the ID
+           // Add the new record with thenew ID
+           // Convert the prizes to list<string>
+           // Save the list<string> to the text file
         }
     }
 }
