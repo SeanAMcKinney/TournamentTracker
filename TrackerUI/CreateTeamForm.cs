@@ -25,16 +25,16 @@ namespace TrackerUI
 
             WireUpLists();
         }
-        
-        ////Test Method to add data to our WireUpLists() method.
-        //private void CreateSampleData()
-        //{
-        //    availableTeamMembers.Add(new PersonModel { FirstName = "Sean", LastName = "McKinney" });
-        //    availableTeamMembers.Add(new PersonModel { FirstName = "Doug", LastName = "McKinney" });
 
-        //    selectedTeamMembers.Add(new PersonModel { FirstName = "Jane", LastName = "Jones" });
-        //    selectedTeamMembers.Add(new PersonModel { FirstName = "Bob", LastName = "Apples" });
-        //}
+        //Test Method to add data to our WireUpLists() method.
+        private void CreateSampleData()
+        {
+            availableTeamMembers.Add(new PersonModel { FirstName = "Sean", LastName = "McKinney" });
+            availableTeamMembers.Add(new PersonModel { FirstName = "Doug", LastName = "McKinney" });
+
+            selectedTeamMembers.Add(new PersonModel { FirstName = "Jane", LastName = "Jones" });
+            selectedTeamMembers.Add(new PersonModel { FirstName = "Bob", LastName = "Apples" });
+        }
 
         private void WireUpLists()
         {
@@ -102,10 +102,26 @@ namespace TrackerUI
         {
             PersonModel p = (PersonModel)selectTeamMemberDropDown.SelectedItem;
 
-            availableTeamMembers.Remove(p);
-            selectedTeamMembers.Add(p);
+            if (p != null)
+            {
+                availableTeamMembers.Remove(p);
+                selectedTeamMembers.Add(p);
 
-            WireUpLists();          
+                WireUpLists();       
+            }    
+        }
+
+        private void removeSelectedMemberButton_Click(object sender, EventArgs e)
+        {
+            PersonModel p = (PersonModel)teamMembersListBox.SelectedItem;
+
+            if (p != null)
+            {
+                selectedTeamMembers.Remove(p);
+                availableTeamMembers.Add(p);
+
+                WireUpLists(); 
+            }
         }
     }
 }
