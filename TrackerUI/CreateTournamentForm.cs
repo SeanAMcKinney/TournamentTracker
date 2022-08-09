@@ -16,6 +16,7 @@ namespace TrackerUI
     {
         List<TeamModel> availableTeams = GlobalConfig.Connection.GetTeam_All();
         List<TeamModel> selectedTeams = new List<TeamModel>();
+        List<PrizeModel> selectedPrizes = new List<PrizeModel>();
 
         public createTournamentForm()
         {
@@ -31,6 +32,9 @@ namespace TrackerUI
 
             tournamentTeamsListBox.DataSource = selectedTeams;
             tournamentTeamsListBox.DisplayMember = "TeamName";
+
+            prizesListBox.DataSource = selectedPrizes;
+            prizesListBox.DisplayMember = "PlaceName";
         }
 
         private void teamOneScoreValue_TextChanged(object sender, EventArgs e)
