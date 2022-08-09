@@ -7,14 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrackerLibrary;
+using TrackerLibrary.Models;
 
 namespace TrackerUI
 {
-    public partial class entryFeeValue : Form
+    public partial class createTournamentForm : Form
     {
-        public entryFeeValue()
+        List<TeamModel> availableTeams = GlobalConfig.Connection.GetTeam_All();
+        List<TeamModel> selectedTeams = new List<TeamModel>();
+
+        public createTournamentForm()
         {
             InitializeComponent();
+
+            InitializeLists();
+        }
+
+        private void InitializeLists()
+        {
+            selectTeamDropDown.DataSource = availableTeams;
+            selectTeamDropDown.DisplayMember = "TeamName";
+
+            tournamentTeamsListBox.DataSource = selectedTeams;
+            tournamentTeamsListBox.DisplayMember = "TeamName";
         }
 
         private void teamOneScoreValue_TextChanged(object sender, EventArgs e)
