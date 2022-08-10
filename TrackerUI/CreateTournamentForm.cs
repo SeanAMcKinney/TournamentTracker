@@ -99,7 +99,9 @@ namespace TrackerUI
 
             if (p != null)
             {
-                selectedPrizes.Remove(p);                
+                selectedPrizes.Remove(p);
+
+                WireUpLists();
             }
         }
     }
