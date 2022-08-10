@@ -65,7 +65,6 @@
             this.tournamentNameValue.Name = "tournamentNameValue";
             this.tournamentNameValue.Size = new System.Drawing.Size(468, 43);
             this.tournamentNameValue.TabIndex = 10;
-            this.tournamentNameValue.TextChanged += new System.EventHandler(this.teamOneScoreValue_TextChanged);
             // 
             // teamOneScoreLabel
             // 
@@ -77,7 +76,6 @@
             this.teamOneScoreLabel.Size = new System.Drawing.Size(290, 45);
             this.teamOneScoreLabel.TabIndex = 9;
             this.teamOneScoreLabel.Text = "Tournament Name";
-            this.teamOneScoreLabel.Click += new System.EventHandler(this.teamOneScoreLabel_Click);
             // 
             // teamOneScoreValue
             // 
@@ -86,7 +84,6 @@
             this.teamOneScoreValue.Size = new System.Drawing.Size(172, 43);
             this.teamOneScoreValue.TabIndex = 12;
             this.teamOneScoreValue.Text = "0";
-            this.teamOneScoreValue.TextChanged += new System.EventHandler(this.teamOneScoreValue_TextChanged_1);
             // 
             // entryFeeLabel
             // 
@@ -98,7 +95,6 @@
             this.entryFeeLabel.Size = new System.Drawing.Size(153, 45);
             this.entryFeeLabel.TabIndex = 11;
             this.entryFeeLabel.Text = "Entry Fee";
-            this.entryFeeLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // selectTeamDropDown
             // 
@@ -107,7 +103,6 @@
             this.selectTeamDropDown.Name = "selectTeamDropDown";
             this.selectTeamDropDown.Size = new System.Drawing.Size(468, 45);
             this.selectTeamDropDown.TabIndex = 14;
-            this.selectTeamDropDown.SelectedIndexChanged += new System.EventHandler(this.roundDropDown_SelectedIndexChanged);
             // 
             // selectTeamLabel
             // 
@@ -212,7 +207,6 @@
             this.deleteSelectedPrizeButton.TabIndex = 23;
             this.deleteSelectedPrizeButton.Text = "Delete Selected";
             this.deleteSelectedPrizeButton.UseVisualStyleBackColor = true;
-            this.deleteSelectedPrizeButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // prizeesLabel
             // 
@@ -224,7 +218,6 @@
             this.prizeesLabel.Size = new System.Drawing.Size(103, 45);
             this.prizeesLabel.TabIndex = 22;
             this.prizeesLabel.Text = "Prizes";
-            this.prizeesLabel.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // prizesListBox
             // 
@@ -235,7 +228,6 @@
             this.prizesListBox.Name = "prizesListBox";
             this.prizesListBox.Size = new System.Drawing.Size(416, 187);
             this.prizesListBox.TabIndex = 21;
-            this.prizesListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // createTournamentButton
             // 

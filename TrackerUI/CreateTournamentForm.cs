@@ -66,46 +66,6 @@ namespace TrackerUI
             //take the PrizeModel and put it into our list of selected prizes
             selectedPrizes.Add(model);
             WireUpLists();
-        }
-
-        private void teamOneScoreValue_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void teamOneScoreLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void teamOneScoreValue_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void roundDropDown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }       
     }
 }
