@@ -133,8 +133,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 }
 
                 // TODO - Capture Rounds info
-                
+
+                output.Add(tm);               
             }
+
+            return output;
         }
 
         public static void SaveToPrizeFile(this List<PrizeModel> models, string fileName)
