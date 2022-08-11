@@ -175,6 +175,42 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
+        public static void SaveToTournamentFile(this List<TournamentModel> models)
+        {
+            // id =0
+            // TournamentName = 1
+            // EntryFee = 2
+            //EnteredTeams = 3
+            //Prizes = 4
+            //Rounds = 5
+
+            List<string> lines = new List<string>();
+
+            foreach (TournamentModel tm in models)
+            {
+                lines.Add($"{ tm.Id },{ tm.TournamentName },{ tm.EntryFee }, { "" }");
+            }
+        }
+
+        private static string ConvertTeamListToString(List<TeamModel> teams)
+        {
+            string output = "";
+
+            if (teams.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (TeamModel t in teams)
+            {
+                output += $"{ t.Id }|";
+            }
+
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
         
         private static string ConvertPeopleListToString(List<PersonModel> people)
         {
