@@ -35,7 +35,6 @@ namespace TrackerLibrary.DataAccess
             return model;
         }
 
-        // TODO - Wire up the CreatePrize for text files.
         public PrizeModel CreatePrize(PrizeModel model)
         {
             // ** Load the text file ** Convert the text to List<PrizeModel>
