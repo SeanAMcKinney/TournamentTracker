@@ -8,6 +8,11 @@ namespace TrackerLibrary.Models
 {
     public class TournamentModel
     {
+        /// <summary>
+        /// Unique identifier for the tournament
+        /// </summary>
+
+        public int Id { get; set; }
 
         /// <summary>
         /// Represents the name given to a Tournament.
