@@ -42,6 +42,6 @@ namespace TrackerLibrary.Models
         /// A list that fits the MatchupModel.
         /// </summary>
 
-        public List<MatchupModel> Rounds { get; set; } = new List<MatchupModel>();
+        public List<List<MatchupModel>> Rounds { get; set; } = new List<List<MatchupModel>>();
     }
 }
