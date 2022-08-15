@@ -295,11 +295,23 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             {
                 entry.SaveEntryToFile(matchupEntryFile);
             }
+
+            // Save to file
         }
 
         public static void SaveEntryToFile(this MatchupEntryModel entry, string matchupEntryFile)
         {
+            List<MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntryModels();
 
+            int currentId = 1;
+            if (entries.Count > 0)
+            {
+                currentId = entries.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            entry.Id = currentId;
+
+            // Save the file
         }
 
         public static void SaveToTournamentFile(this List<TournamentModel> models, string fileName)
