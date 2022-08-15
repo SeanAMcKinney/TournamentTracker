@@ -205,6 +205,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 
         private static TeamModel LookupTeamsById(int id)
         {
+            List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels(GlobalConfig.PeopleFile);
             throw new NotImplementedException();
         }
 
