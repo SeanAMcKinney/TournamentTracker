@@ -296,17 +296,19 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 entry.SaveEntryToFile(matchupEntryFile);
             }
 
-            // Save to file
             List<String> lines = new List<string>();
 
-            // id = 0
-            // entries = 1(pipe delimite by id)
-            // winner = 2
-            // matchupRound =3
             foreach (MatchupModel m in matchups)
             {
-                lines.Add($"{ m.Id },{ m.Entries }");
+                string winner = "";
+                if (m.Winner != null)
+                {
+                    winner = m.Winner.Id.ToString();
+                }
+                lines.Add($"{ m.Id },{ ConvertMatchupEntryListToString(m.Entries) },{ m.Winner.Id },{ m.MatchupRound }");
             }
+
+            File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
         }
 
         public static void SaveEntryToFile(this MatchupEntryModel entry, string matchupEntryFile)
