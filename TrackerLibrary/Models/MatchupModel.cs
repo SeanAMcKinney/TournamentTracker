@@ -9,7 +9,6 @@ namespace TrackerLibrary.Models
     /// <summary>
     /// Represents one match in the tournament
     /// </summary>
-
     public class MatchupModel
     {
         /// <summary>
