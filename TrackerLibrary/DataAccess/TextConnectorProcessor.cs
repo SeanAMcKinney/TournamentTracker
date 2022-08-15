@@ -198,9 +198,23 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
         }
 
-        public static List<MatchupEntryModel> ConvertStringToMatchupEntryModels(string input)
+        public static List<MatchupEntryModel> ConvertToMatchupEntryModels(this List<string> input)
         {
             throw new NotImplementedException();
+        }
+
+        public static List<MatchupEntryModel> ConvertStringToMatchupEntryModels(string input)
+        {
+            string[] ids = input.Split('|');
+            List<MatchupEntryModel> output = new List<MatchupEntryModel>();
+            List<MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntryModels();
+
+            foreach (string id in ids)
+            {
+                output.Add(entries.Where(x => x.Id == int.Parse(id)).First());
+            }
+
+            return output;
         }
 
         private static TeamModel LookupTeamById(int id)
