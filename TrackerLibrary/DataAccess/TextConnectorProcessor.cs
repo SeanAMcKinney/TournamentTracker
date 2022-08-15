@@ -198,9 +198,36 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
         }
 
-        public static List<MatchupEntryModel> ConvertToMatchupEntryModels(this List<string> input)
+        public static List<MatchupEntryModel> ConvertToMatchupEntryModels(this List<string> lines)
         {
-            throw new NotImplementedException();
+            List<MatchupEntryModel> output = new List<MatchupEntryModel>();
+
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+
+                MatchupEntryModel me = new MatchupEntryModel();
+                me.Id = int.Parse(cols[0]);
+                me.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
+                me.Score = double.Parse(cols[2]);
+                me.ParentMatchup = LookupMatchupById(int.Parse(cols[3]));
+            }
+            //List<PersonModel> output = new List<PersonModel>();
+
+            //foreach (string line in lines)
+            //{
+            //    string[] cols = line.Split(',');
+
+            //    PersonModel p = new PersonModel();
+            //    p.Id = int.Parse(cols[0]);
+            //    p.FirstName = cols[1];
+            //    p.LastName = cols[2];
+            //    p.EmailAddress = cols[3];
+            //    p.CellphoneNumber = cols[4];
+            //    output.Add(p);
+            //}
+
+            //return output;
         }
 
         public static List<MatchupEntryModel> ConvertStringToMatchupEntryModels(string input)
@@ -222,6 +249,13 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels(GlobalConfig.PeopleFile);
 
             return teams.Where(x => x.Id == id).First();
+        }
+
+        private static MatchupModel LookupMatchupById(int id)
+        {
+            List<MatchupModel> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile().ConvertToMatchupModels();
+
+            return matchups.Where(ConfigXmlDocument => ConfigXmlDocument.Id == id).First();
         }
 
         public static List<MatchupModel> ConvertToMatchupModels(this List<string> lines)
