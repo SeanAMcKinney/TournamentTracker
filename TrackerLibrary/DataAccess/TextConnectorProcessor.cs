@@ -203,10 +203,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             throw new NotImplementedException();
         }
 
-        private static TeamModel LookupTeamsById(int id)
+        private static TeamModel LookupTeamById(int id)
         {
             List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels(GlobalConfig.PeopleFile);
-            throw new NotImplementedException();
+
+            return teams.Where(x => x.Id == id).First();
         }
 
         public static List<MatchupModel> ConvertToMatchupModels(this List<string> lines)
@@ -224,7 +225,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 MatchupModel p = new MatchupModel();
                 p.Id = int.Parse(cols[0]);
                 p.Entries = ConvertStringToMatchupEntryModels(cols[1]);
-                p.Winner = LookupTeamsById(int.Parse(cols[2]));
+                p.Winner = LookupTeamById(int.Parse(cols[2]));
                 p.MatchupRound = int.Parse(cols[3]);
                 output.Add(p);
             }
