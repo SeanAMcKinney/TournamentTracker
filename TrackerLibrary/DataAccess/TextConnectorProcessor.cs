@@ -220,7 +220,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 {
                     me.ParentMatchup = null;
                 }
+
+                output.Add(me);
             }
+
+            return output;
         }
 
         public static List<MatchupEntryModel> ConvertStringToMatchupEntryModels(string input)
