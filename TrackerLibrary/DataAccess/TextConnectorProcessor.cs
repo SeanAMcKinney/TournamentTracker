@@ -81,11 +81,14 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 t.Id = int.Parse(cols[0]);
                 t.TeamName = cols[1];
 
-                string[] personId = cols[2].Split('|');
+                string[] personIds = cols[2].Split('|');
 
-                foreach (string id in personId)
+                foreach (string id in personIds)
                 {
-                    t.TeamMembers.Add(people.Where(x => x.Id == int.Parse(id)).First());
+                    if (!string.IsNullOrWhiteSpace(id))
+                    {
+                        t.TeamMembers.Add(people.Where(x => x.Id == int.Parse(id)).First());
+                    }
                 }
 
                 output.Add(t);
