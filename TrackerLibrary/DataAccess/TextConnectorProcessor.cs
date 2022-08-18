@@ -201,8 +201,6 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                     // Store the id
                     // Save the matchup record
                     matchup.SaveMatchupToFile(matchupFile, matchupEntryFile);
-
-
                 }
             }
         }
@@ -231,7 +229,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 int parentId = 0;
                 if (int.TryParse(cols[3], out parentId))
                 {
-                    me.ParentMatchup = LookupMatchupById(int.Parse(cols[3]));
+                    me.ParentMatchup = LookupMatchupById(parentId);
                 }
                 else
                 {
@@ -248,12 +246,22 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         {
             string[] ids = input.Split('|');
             List<MatchupEntryModel> output = new List<MatchupEntryModel>();
-            List<MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntryModels();
+            List<string> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile();
+            List<string> matchingEntries = new List<string>();
 
             foreach (string id in ids)
             {
-                output.Add(entries.Where(x => x.Id == int.Parse(id)).First());
+                foreach (string entry in entries)
+                {
+                    string[] cols = entry.Split(',');
+
+                    if (cols[0] == id)
+                    {
+                        matchingEntries.Add(entry);
+                    }
+                }
             }
+            output = matchingEntries.ConvertToMatchupEntryModels();
 
             return output;
         }
@@ -287,7 +295,14 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 MatchupModel p = new MatchupModel();
                 p.Id = int.Parse(cols[0]);
                 p.Entries = ConvertStringToMatchupEntryModels(cols[1]);
-                p.Winner = LookupTeamById(int.Parse(cols[2]));
+                if (cols[2].Length == 0)
+                {
+                    p.Winner = null;
+                }
+                else
+                {
+                    p.Winner = LookupTeamById(int.Parse(cols[2]));
+                }
                 p.MatchupRound = int.Parse(cols[3]);
                 output.Add(p);
             }
@@ -309,27 +324,14 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             matchup.Id = currentId;
 
             matchups.Add(matchup);
-
-            List<String> lines = new List<string>();
-
-            foreach (MatchupModel m in matchups)
-            {
-                string winner = "";
-                if (m.Winner != null)
-                {
-                    winner = m.Winner.Id.ToString();
-                }
-                lines.Add($"{ m.Id },{ "" },{ m.Winner.Id },{ m.MatchupRound }");
-            }
-
-            File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
+           
 
             foreach (MatchupEntryModel entry in matchup.Entries)
             {
                 entry.SaveEntryToFile(matchupEntryFile);
             }
 
-            lines = new List<string>();
+            List<string> lines = new List<string>();
 
             foreach (MatchupModel m in matchups)
             {
@@ -338,7 +340,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 {
                     winner = m.Winner.Id.ToString();
                 }
-                lines.Add($"{ m.Id },{ ConvertMatchupEntryListToString(m.Entries) },{ m.Winner.Id },{ m.MatchupRound }");
+                lines.Add($"{ m.Id },{ ConvertMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupRound }");
             }
 
             File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
@@ -349,6 +351,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             List<MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntryModels();
 
             int currentId = 1;
+
             if (entries.Count > 0)
             {
                 currentId = entries.OrderByDescending(x => x.Id).First().Id + 1;
