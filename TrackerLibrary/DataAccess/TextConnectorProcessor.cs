@@ -385,6 +385,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
 
             entry.Id = currentId;
+            entries.Add(entry);
 
             List<string> lines = new List<string>();
 
