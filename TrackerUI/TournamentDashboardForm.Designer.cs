@@ -46,7 +46,6 @@
             this.headerLabel.Size = new System.Drawing.Size(501, 65);
             this.headerLabel.TabIndex = 13;
             this.headerLabel.Text = "Tournament Dashboard";
-            this.headerLabel.Click += new System.EventHandler(this.headerLabel_Click);
             // 
             // loadExistingTournamentDropdown
             // 
@@ -55,7 +54,6 @@
             this.loadExistingTournamentDropdown.Name = "loadExistingTournamentDropdown";
             this.loadExistingTournamentDropdown.Size = new System.Drawing.Size(468, 45);
             this.loadExistingTournamentDropdown.TabIndex = 20;
-            this.loadExistingTournamentDropdown.SelectedIndexChanged += new System.EventHandler(this.loadExistingTournamentDropdown_SelectedIndexChanged);
             // 
             // loadExistingTournamentLabel
             // 
@@ -67,7 +65,6 @@
             this.loadExistingTournamentLabel.Size = new System.Drawing.Size(413, 46);
             this.loadExistingTournamentLabel.TabIndex = 19;
             this.loadExistingTournamentLabel.Text = "Load Exisiting Tournament";
-            this.loadExistingTournamentLabel.Click += new System.EventHandler(this.loadExistingTournamentLabel_Click);
             // 
             // loadTournamentButton
             // 
@@ -83,7 +80,6 @@
             this.loadTournamentButton.TabIndex = 21;
             this.loadTournamentButton.Text = "Load Tournament";
             this.loadTournamentButton.UseVisualStyleBackColor = true;
-            this.loadTournamentButton.Click += new System.EventHandler(this.loadTournamentButton_Click);
             // 
             // createTournamentButton
             // 
@@ -99,7 +95,6 @@
             this.createTournamentButton.TabIndex = 27;
             this.createTournamentButton.Text = "Create Tournament";
             this.createTournamentButton.UseVisualStyleBackColor = true;
-            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // TournamentDashboardForm
             // 

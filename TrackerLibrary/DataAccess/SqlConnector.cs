@@ -157,8 +157,8 @@ namespace TrackerLibrary.DataAccess
                     {
                         p = new DynamicParameters();
 
-                        p.Add("@MatchupId", matchup.Id);  
-                        
+                        p.Add("@MatchupId", matchup.Id);
+
                         if (entry.ParentMatchup == null)
                         {
                             p.Add("@ParentMatchupId", null);
@@ -176,7 +176,7 @@ namespace TrackerLibrary.DataAccess
                         {
                             p.Add("@TeamCompetingId", entry.TeamCompeting.Id);
                         }
-                        
+
                         p.Add("@id", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                         connection.Execute("dbo.spMatchupEntries_Insert", p, commandType: CommandType.StoredProcedure);
@@ -215,5 +215,38 @@ namespace TrackerLibrary.DataAccess
 
             return output;
         }
-    }
+
+        public List<TournamentModel> GetTournament_All()
+        {
+            List<TournamentModel> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                output = connection.Query<TournamentModel>("dbo.spTournaments_GetAll").ToList();
+
+                foreach (TournamentModel t in output)
+                {
+                    // Populate Prizes
+                    t.Prizes = connection.Query<PrizeModel>("dbo.spPrizes_GetByTournament").ToList();
+
+                    // Populate teams
+                    t.EnteredTeams = connection.Query<TeamModel>("dbo.spTeam_GetByTournament").ToList();
+
+                    foreach (TeamModel team in t.EnteredTeams)
+                    {
+                        var p = new DynamicParameters();
+                        p.Add("@TeamId", team.Id);
+                        team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
+                    }
+
+                    //Populate rounds
+
+                }
+            }
+
+        }
+
+            return output;
+        }
+}
 }
