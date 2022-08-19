@@ -47,7 +47,7 @@ namespace TrackerLibrary.DataAccess
 
             if (prizes.Count > 0)
             {
-               currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
+                currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
             }
 
             model.Id = currentId;
@@ -98,7 +98,7 @@ namespace TrackerLibrary.DataAccess
             List<TournamentModel> tournaments = TournamentFile
                 .FullFilePath()
                 .LoadFile()
-                .ConvertToTournamentModels(TeamFile, PeopleFile, PrizesFile);         
+                .ConvertToTournamentModels(TeamFile, PeopleFile, PrizesFile);
 
             int currentId = 1;
 
@@ -114,6 +114,14 @@ namespace TrackerLibrary.DataAccess
             tournaments.Add(model);
 
             tournaments.SaveToTournamentFile(TournamentFile);
+        }
+
+        public List<TournamentModel> GetTournament_All()
+        {
+            return TournamentFile
+                .FullFilePath()
+                .LoadFile()
+                .ConvertToTournamentModels(TeamFile, PeopleFile, PrizesFile);
         }
     }
 }
