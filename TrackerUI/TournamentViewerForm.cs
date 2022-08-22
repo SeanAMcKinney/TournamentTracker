@@ -23,8 +23,7 @@ namespace TrackerUI
 
             tournament = tournamentModel;
 
-            WireUpRoundsLists();
-            WireUpMatchupsLists();
+            WireUpLists();
 
             LoadFormData();
 
@@ -36,15 +35,9 @@ namespace TrackerUI
             tournamentName.Text = tournament.TournamentName;
         }
 
-        private void WireUpRoundsLists()
-        {
-            //roundDropDown.DataSource = null;      
+        private void WireUpLists()
+        {     
             roundDropDown.DataSource = rounds;
-        }
-
-        private void WireUpMatchupsLists()
-        {
-            //matchupListbox.DataSource = null;
             matchupListbox.DataSource = selectedMatchups;
             matchupListbox.DisplayMember = "DisplayName";
         }
@@ -65,19 +58,16 @@ namespace TrackerUI
                 } 
             }
 
-            //roundsBinding.ResetBindings(false);
-            //WireUpRoundsLists();
+            LoadMatchups(1);
         }
 
         private void roundDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadMatchups();
+            LoadMatchups((int)roundDropDown.SelectedItem);
         }
 
-        private void LoadMatchups()
+        private void LoadMatchups(int round)
         {
-            int round = (int)roundDropDown.SelectedItem;
-
             foreach (List<MatchupModel> matchups in tournament.Rounds)
             {
                 if (matchups.First().MatchupRound == round)
@@ -89,9 +79,6 @@ namespace TrackerUI
                     }
                 }
             }
-
-            //matchupsBinding.ResetBindings(false);
-            //WireUpMatchupsLists();
         }
 
         private void LoadMatchup()
