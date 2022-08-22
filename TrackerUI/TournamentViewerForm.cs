@@ -14,14 +14,17 @@ namespace TrackerUI
     public partial class TournamentViewerForm : Form
     {
         private TournamentModel tournament;
-        List<int> rounds = new List<int>();
-        List<MatchupModel> selectedMatchups = new List<MatchupModel>();
+        BindingList<int> rounds = new BindingList<int>();
+        BindingList<MatchupModel> selectedMatchups = new BindingList<MatchupModel>();
 
         public TournamentViewerForm(TournamentModel tournamentModel)
         {
             InitializeComponent();
 
             tournament = tournamentModel;
+
+            WireUpRoundsLists();
+            WireUpMatchupsLists();
 
             LoadFormData();
 
@@ -35,20 +38,20 @@ namespace TrackerUI
 
         private void WireUpRoundsLists()
         {
-            roundDropDown.DataSource = null;
+            //roundDropDown.DataSource = null;      
             roundDropDown.DataSource = rounds;
         }
 
         private void WireUpMatchupsLists()
         {
-            matchupListbox.DataSource = null;
+            //matchupListbox.DataSource = null;
             matchupListbox.DataSource = selectedMatchups;
             matchupListbox.DisplayMember = "DisplayName";
         }
 
         private void LoadRounds()
         {
-            rounds = new List<int>();
+            rounds = new BindingList<int>();
 
             rounds.Add(1);
             int currRound = 1;
@@ -62,7 +65,8 @@ namespace TrackerUI
                 } 
             }
 
-            WireUpRoundsLists();
+            //roundsBinding.ResetBindings(false);
+            //WireUpRoundsLists();
         }
 
         private void roundDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,11 +82,12 @@ namespace TrackerUI
             {
                 if (matchups.First().MatchupRound == round)
                 {
-                    selectedMatchups = matchups;
+                    selectedMatchups = new BindingList<MatchupModel>(matchups);
                 }
             }
 
-            WireUpMatchupsLists();
+            //matchupsBinding.ResetBindings(false);
+            //WireUpMatchupsLists();
         }
 
         private void LoadMatchup()
@@ -97,6 +102,9 @@ namespace TrackerUI
                     {
                         teamOneName.Text = m.Entries[0].TeamCompeting.TeamName;
                         teamOneScoreValue.Text = m.Entries[0].Score.ToString();
+
+                        teamTwoName.Text = "<bye>";
+                        teamTwoScoreValue.Text = "0";
                     }
                     else
                     {
