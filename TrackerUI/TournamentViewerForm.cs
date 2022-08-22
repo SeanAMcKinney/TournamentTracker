@@ -51,7 +51,7 @@ namespace TrackerUI
 
         private void LoadRounds()
         {
-            rounds = new BindingList<int>();
+            rounds.Clear();
 
             rounds.Add(1);
             int currRound = 1;
@@ -82,7 +82,11 @@ namespace TrackerUI
             {
                 if (matchups.First().MatchupRound == round)
                 {
-                    selectedMatchups = new BindingList<MatchupModel>(matchups);
+                    selectedMatchups.Clear();
+                    foreach (MatchupModel m in matchups)
+                    {
+                        selectedMatchups.Add(m);
+                    }
                 }
             }
 
