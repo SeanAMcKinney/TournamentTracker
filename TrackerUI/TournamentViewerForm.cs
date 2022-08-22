@@ -33,11 +33,14 @@ namespace TrackerUI
             tournamentName.Text = tournament.TournamentName;
         }
 
-        private void WireUpLists()
+        private void WireUpRoundsLists()
         {
             roundDropDown.DataSource = null;
             roundDropDown.DataSource = rounds;
+        }
 
+        private void WireUpMatchupsLists()
+        {
             matchupListbox.DataSource = null;
             matchupListbox.DataSource = selectedMatchups;
             matchupListbox.DisplayMember = "DisplayName";
@@ -59,7 +62,7 @@ namespace TrackerUI
                 } 
             }
 
-            WireUpLists();
+            WireUpRoundsLists();
         }
 
         private void roundDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,7 +82,7 @@ namespace TrackerUI
                 }
             }
 
-            WireUpLists();
+            WireUpMatchupsLists();
         }
     }
 }
