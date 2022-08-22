@@ -144,7 +144,6 @@
             this.teamTwoScoreValue.Name = "teamTwoScoreValue";
             this.teamTwoScoreValue.Size = new System.Drawing.Size(135, 43);
             this.teamTwoScoreValue.TabIndex = 11;
-            this.teamTwoScoreValue.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // teamTwoScoreLabel
             // 
@@ -156,7 +155,6 @@
             this.teamTwoScoreLabel.Size = new System.Drawing.Size(104, 46);
             this.teamTwoScoreLabel.TabIndex = 10;
             this.teamTwoScoreLabel.Text = "Score";
-            this.teamTwoScoreLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // teamTwoName
             // 
@@ -168,7 +166,6 @@
             this.teamTwoName.Size = new System.Drawing.Size(208, 46);
             this.teamTwoName.TabIndex = 9;
             this.teamTwoName.Text = "<team two>";
-            this.teamTwoName.Click += new System.EventHandler(this.label2_Click);
             // 
             // versusLabel
             // 
