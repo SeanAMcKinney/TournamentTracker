@@ -40,5 +40,25 @@ namespace TrackerLibrary.Models
         /// </summary>
         
         public int MatchupRound { get; set; }
+
+        public string DisplayName
+        {
+            get
+            {
+                string output = "";
+
+                foreach (MatchupEntryModel me in Entries)
+                {
+                    if (output.Length == 0)
+                    {
+                        output = me.TeamCompeting.TeamName;
+                    }
+                    else
+                    {
+                        output += $" vs. { me.TeamCompeting.TeamName }";
+                    }
+                }
+            }
+        }
     }
 }
