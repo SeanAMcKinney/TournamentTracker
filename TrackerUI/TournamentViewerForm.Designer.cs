@@ -109,6 +109,7 @@
             this.matchupListbox.Name = "matchupListbox";
             this.matchupListbox.Size = new System.Drawing.Size(416, 335);
             this.matchupListbox.TabIndex = 5;
+            this.matchupListbox.SelectedIndexChanged += new System.EventHandler(this.matchupListbox_SelectedIndexChanged);
             // 
             // teamOneName
             // 

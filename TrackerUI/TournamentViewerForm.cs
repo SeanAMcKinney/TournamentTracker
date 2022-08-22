@@ -84,5 +84,46 @@ namespace TrackerUI
 
             WireUpMatchupsLists();
         }
+
+        private void LoadMatchup()
+        {
+            MatchupModel m = (MatchupModel)matchupListbox.SelectedItem;
+
+            for (int i = 0; i < m.Entries.Count; i++)
+            {
+                if (i == 0)
+                {
+                    if (m.Entries[0].TeamCompeting != null)
+                    {
+                        teamOneName.Text = m.Entries[0].TeamCompeting.TeamName;
+                        teamOneScoreValue.Text = m.Entries[0].Score.ToString();
+                    }
+                    else
+                    {
+                        teamOneName.Text = "Not Yet Set";
+                        teamOneScoreValue.Text = "";
+                    }
+                }
+
+                if (i == 1)
+                {
+                    if (m.Entries[1].TeamCompeting != null)
+                    {
+                        teamTwoName.Text = m.Entries[1].TeamCompeting.TeamName;
+                        teamTwoScoreValue.Text = m.Entries[1].Score.ToString();
+                    }
+                    else
+                    {
+                        teamTwoName.Text = "Not Yet Set";
+                        teamTwoScoreValue.Text = "";
+                    }
+                }
+            }
+        }
+
+        private void matchupListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadMatchup();
+        }
     }
 }
