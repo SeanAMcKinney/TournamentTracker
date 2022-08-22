@@ -79,12 +79,12 @@ namespace TrackerUI
                     }
                 }
             }
+
+            LoadMatchup(selectedMatchups.First());
         }
 
-        private void LoadMatchup()
+        private void LoadMatchup(MatchupModel m)
         {
-            MatchupModel m = (MatchupModel)matchupListbox.SelectedItem;
-
             for (int i = 0; i < m.Entries.Count; i++)
             {
                 if (i == 0)
@@ -122,7 +122,7 @@ namespace TrackerUI
 
         private void matchupListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadMatchup();
+            LoadMatchup((MatchupModel)matchupListbox.SelectedItem);
         }
     }
 }
