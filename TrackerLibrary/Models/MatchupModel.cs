@@ -58,6 +58,8 @@ namespace TrackerLibrary.Models
                         output += $" vs. { me.TeamCompeting.TeamName }";
                     }
                 }
+
+                return output;
             }
         }
     }
