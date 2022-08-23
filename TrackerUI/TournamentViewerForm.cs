@@ -213,6 +213,8 @@ namespace TrackerUI
             }
 
             LoadMatchups((int)roundDropDown.SelectedItem);
+
+
         }
     }
 }
