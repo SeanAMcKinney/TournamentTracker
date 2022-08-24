@@ -189,7 +189,7 @@
             this.scoreButon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.scoreButon.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreButon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.scoreButon.Location = new System.Drawing.Point(856, 426);
+            this.scoreButon.Location = new System.Drawing.Point(855, 436);
             this.scoreButon.Name = "scoreButon";
             this.scoreButon.Size = new System.Drawing.Size(166, 68);
             this.scoreButon.TabIndex = 13;
