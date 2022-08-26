@@ -57,6 +57,7 @@ namespace TrackerUI
         {
             //Call the CreatePrizeForm
             CreatePrizeForm frm = new CreatePrizeForm(this);
+
             frm.Show();
         }
 
