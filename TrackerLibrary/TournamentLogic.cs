@@ -48,6 +48,21 @@ namespace TrackerLibrary
             toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
         }
 
+        private static int CheckCurrentRound(this TournamentModel model)
+        {
+            int output = 1;
+
+            foreach (List<MatchupModel> round in model.Rounds)
+            {
+                if (round.All(x => x.Winner != null))
+                {
+                    output += 1;
+                }
+            }
+
+            return output;
+        }
+
         private static void AdvanceWinners(List<MatchupModel> models, TournamentModel tournament)
         {
             foreach (MatchupModel m in models)
