@@ -17,11 +17,12 @@ namespace TrackerUI
         private TournamentModel tournament;
         BindingList<int> rounds = new BindingList<int>();
         BindingList<MatchupModel> selectedMatchups = new BindingList<MatchupModel>();
-        private object scoreButton;
 
         public TournamentViewerForm(TournamentModel tournamentModel)
         {
             InitializeComponent();
+
+            tournament.OnTournamentComplete += Tournament_OnTournamentComplete;
 
             tournament = tournamentModel;
 
@@ -30,6 +31,11 @@ namespace TrackerUI
             LoadFormData();
 
             LoadRounds();
+        }
+
+        private void Tournament_OnTournamentComplete(object sender, DateTime e)
+        {
+            this.Close();
         }
 
         private void LoadFormData()

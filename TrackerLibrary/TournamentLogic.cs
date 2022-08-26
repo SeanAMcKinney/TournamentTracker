@@ -161,7 +161,6 @@ namespace TrackerLibrary
             string subject = "";
             StringBuilder body = new StringBuilder();
 
-
             subject = $"In { model.TournamentName }, { winners.TeamName } has won!";
 
             body.AppendLine("<h1>WE HAVE A WINNER!</h1>");
@@ -195,6 +194,9 @@ namespace TrackerLibrary
             }
      
             EmailLogic.SendEmail(new List<string>(), bcc, subject, body.ToString());
+
+            //Complete Tournament
+            model.CompleteTournament();
         }
 
         private static decimal CalculatePrizePayout(this PrizeModel prize, decimal totalIncome)
