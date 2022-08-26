@@ -47,6 +47,7 @@ namespace TrackerLibrary
             AdvanceWinners(toScore, model);
 
             toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
+
             int endingRound = model.CheckCurrentRound();
 
             if (endingRound > startingRound)
@@ -124,13 +125,12 @@ namespace TrackerLibrary
                 }
             }
 
-            // Tournamnet is complete
-            completeTournament(model);
+            CompleteTournament(model);
 
             return output - 1;
         }
 
-        private static void completeTournament(TournamentModel model)
+        private static void CompleteTournament(TournamentModel model)
         {
             GlobalConfig.Connection.CompleteTournament(model);
             TeamModel winners = model.Rounds.Last().First().Winner;
@@ -373,8 +373,7 @@ namespace TrackerLibrary
         }
 
         private static List<TeamModel> RandomizeTeamOrder(List<TeamModel> teams)
-        {
-            // teams.OrderBy(a => Guid.NewGuid()).ToList();
+        {;
             return teams.OrderBy(x => Guid.NewGuid()).ToList();
         }
     }

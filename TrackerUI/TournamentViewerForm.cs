@@ -22,9 +22,9 @@ namespace TrackerUI
         {
             InitializeComponent();
 
-            tournament.OnTournamentComplete += Tournament_OnTournamentComplete;
-
             tournament = tournamentModel;
+
+            tournament.OnTournamentComplete += Tournament_OnTournamentComplete;
 
             WireUpLists();
 
@@ -193,6 +193,7 @@ namespace TrackerUI
         private void scoreButon_Click(object sender, EventArgs e)
         {
             string errorMessage = ValidateData();
+
             if (errorMessage.Length > 0)
             {
                 MessageBox.Show($"Input Error: { errorMessage }");

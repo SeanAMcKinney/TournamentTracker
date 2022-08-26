@@ -70,8 +70,6 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         {
             List<TeamModel> output = new List<TeamModel>();
             List<PersonModel> people = GlobalConfig.PeopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
-            //id, team name, list of ids seperated by the pipe
-            //3, Sean's Team, 1|3|5
 
             foreach (string line in lines)
             {
@@ -319,19 +317,21 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             {
                 string[] cols = line.Split(',');
 
-                MatchupModel p = new MatchupModel();
-                p.Id = int.Parse(cols[0]);
-                p.Entries = ConvertStringToMatchupEntryModels(cols[1]);
+                MatchupModel m = new MatchupModel();
+                m.Id = int.Parse(cols[0]);
+                m.Entries = ConvertStringToMatchupEntryModels(cols[1]);
                 if (cols[2].Length == 0)
                 {
-                    p.Winner = null;
+                    m.Winner = null;
                 }
                 else
                 {
-                    p.Winner = LookupTeamById(int.Parse(cols[2]));
+                    m.Winner = LookupTeamById(int.Parse(cols[2]));
                 }
-                p.MatchupRound = int.Parse(cols[3]);
-                output.Add(p);
+
+                m.MatchupRound = int.Parse(cols[3]);
+
+                output.Add(m);
             }
 
             return output;
