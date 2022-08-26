@@ -118,9 +118,19 @@ namespace TrackerLibrary
                 {
                     output += 1;
                 }
+                else
+                {
+                    return output;
+                }
             }
 
-            return output;
+            // Tournamnet is complete
+            completeTournament(model);
+        }
+
+        private static void completeTournament(TournamentModel model)
+        {
+            model.
         }
 
         private static void AdvanceWinners(List<MatchupModel> models, TournamentModel tournament)
